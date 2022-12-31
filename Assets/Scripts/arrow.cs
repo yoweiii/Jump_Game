@@ -24,7 +24,7 @@ public class arrow : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (collision.name == "addScore")
+        if (collision.name == "add")
         {
             Destroy(gameObject);
             GameManager.GetComponent<GameManager>().addScore();
