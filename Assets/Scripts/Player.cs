@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rigid2d;
     Animator animator;
-
+    GameObject GameManager;
     public float jumpForce = 400.0f;
     public float walkForce = 10.0f;
     public float maxWalkSpeed = 2.0f;
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     {
         rigid2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        GameManager = GameObject.Find("GameManager");
     }
 
     // Update is called once per frame
@@ -49,6 +50,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene("ClearScene");
+        if (collision.name == "flag")
+        {
+            SceneManager.LoadScene("ClearScene");
+        }
+        if (collision.tag == "arrow")
+        {
+            GameManager.GetComponent<GameManager>().DecreaseHp();
+        }
     }
 }
